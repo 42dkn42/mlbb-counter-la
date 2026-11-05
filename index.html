@@ -1,114 +1,27 @@
-
 <!DOCTYPE html>
-<html lang="tr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#101629">
-<title>MLBB Counter Lab</title>
+<html lang="tr"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101629"><title>MLBB Counter Lab</title>
 <style>
-*{box-sizing:border-box}
-body{margin:0;background:#0b1020;color:#f4f6ff;font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}
-header{padding:25px 18px;background:linear-gradient(135deg,#172747,#101629);border-bottom:1px solid #34415e}
-h1{margin:0;color:#f6c75b;font-size:25px}
-header p{color:#aebbd2;margin:8px 0 0;font-size:13px}
-main{padding:16px;max-width:850px;margin:auto}
-.panel{background:#151e32;border:1px solid #293752;border-radius:16px;padding:16px;margin-bottom:15px}
-h2{font-size:17px;margin:0 0 13px}
-select,input{width:100%;padding:14px;border-radius:10px;border:1px solid #3b4b69;background:#0d1527;color:white;font-size:15px;margin:5px 0 12px}
-button{border:0;border-radius:10px;background:#e9b94e;color:#172033;font-weight:800;padding:13px 18px;font-size:15px;width:100%}
-.hero-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:9px}
-.hero{background:#202c44;border:1px solid #394966;border-radius:12px;padding:12px 5px;text-align:center;cursor:pointer}
-.hero.selected{border:2px solid #f5c65c;background:#35415a}
-.avatar{width:53px;height:53px;margin:auto auto 7px;border-radius:14px;background:linear-gradient(135deg,#435e8b,#a67a38);display:grid;place-items:center;font-size:25px;font-weight:bold;color:white}
-.hero b{font-size:12px;display:block}
-.hero small{color:#aab7ce;font-size:10px}
-.result{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}
-.counter{background:#202c44;padding:12px;border-radius:12px;border:1px solid #394966}
-.counter strong{display:block;color:#f4c75d;margin:5px 0}
-.counter small{color:#bdc8da}
-.tags{display:flex;flex-wrap:wrap;gap:7px}
-.tag{background:#273754;padding:9px;border-radius:9px;font-size:12px}
-.note{font-size:11px;color:#9ba9c1;line-height:1.5}
-footer{text-align:center;color:#8492aa;padding:20px;font-size:11px}
-@media(min-width:600px){.hero-grid{grid-template-columns:repeat(5,1fr)}}
-</style>
-</head>
-<body>
-<header>
-<h1>⚔ MLBB COUNTER LAB</h1>
-<p>Kahraman seç • Rakibi analiz et • Karşı dizilimini oluştur</p>
-</header>
-<main>
-<section class="panel">
-<h2>1. Rakip kahramanı seç</h2>
-<input id="search" placeholder="Kahraman ara..." oninput="render()">
-<div id="heroes" class="hero-grid"></div>
-</section>
-<section class="panel">
-<h2>2. Karşı kahraman önerileri</h2>
-<div id="results"><p class="note">Önce rakip kahramanı seç.</p></div>
-</section>
-<section class="panel">
-<h2>3. Önerilen eşya dizilimi</h2>
-<div id="build"><p class="note">Kahraman seçildiğinde eşya önerileri burada görünür.</p></div>
-</section>
-<section class="panel">
-<h2>4. Hızlı karşı eşya rehberi</h2>
-<div class="tags">
-<div class="tag">🛡 Dominance Ice<br><small>Can yenileme ve kalkan</small></div>
-<div class="tag">🔥 Glowing Wand<br><small>Büyü hasarı ve iyileşme azaltma</small></div>
-<div class="tag">⚔ Sea Halberd<br><small>Fiziksel saldırı ve iyileşme azaltma</small></div>
-<div class="tag">✨ Athena's Shield<br><small>Anlık büyü hasarı</small></div>
-<div class="tag">🛡 Radiant Armor<br><small>Sürekli büyü hasarı</small></div>
-<div class="tag">⚔ Antique Cuirass<br><small>Fiziksel yetenek hasarı</small></div>
-</div>
-</section>
-<p class="note">Bu sürüm başlangıç rehberidir. Öneriler maç kompozisyonuna, yamaya ve oyuncu becerisine göre değişebilir. Kesin kazanma garantisi vermez.</p>
-</main>
-<footer>MLBB COUNTER LAB • Topluluk destekli başlangıç sürümü</footer>
+*{box-sizing:border-box}body{margin:0;background:#0b1020;color:#f4f6ff;font-family:-apple-system,BlinkMacSystemFont,Arial,sans-serif}header{padding:24px 17px;background:linear-gradient(135deg,#172747,#101629);border-bottom:1px solid #34415e}h1{margin:0;color:#f6c75b;font-size:25px}header p{color:#aebbd2;margin:8px 0 0;font-size:13px}main{padding:14px;max-width:900px;margin:auto}.panel{background:#151e32;border:1px solid #293752;border-radius:16px;padding:15px;margin-bottom:14px}h2{font-size:17px;margin:0 0 12px}input,select{width:100%;padding:13px;border-radius:10px;border:1px solid #3b4b69;background:#0d1527;color:white;font-size:15px;margin:5px 0 10px}.filters{display:grid;grid-template-columns:1fr 1fr;gap:8px}.hero-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.hero{background:#202c44;border:1px solid #394966;border-radius:12px;padding:10px 5px;text-align:center;min-width:0;color:white;cursor:pointer}.avatar{width:48px;height:48px;margin:0 auto 7px;border-radius:13px;background:linear-gradient(135deg,#435e8b,#a67a38);display:grid;place-items:center;font-size:19px;font-weight:800}.hero b{font-size:12px;display:block;overflow-wrap:anywhere}.hero small{color:#aab7ce;font-size:10px}.count{font-size:12px;color:#9eacc4;margin:0 0 10px}.actions{display:flex;flex-wrap:wrap;gap:8px}.link{display:inline-block;background:#273754;color:#f4d27c;text-decoration:none;padding:11px 12px;border-radius:10px;font-size:12px}.note{font-size:11px;color:#9ba9c1;line-height:1.55}.pill{display:inline-block;background:#273754;padding:7px 9px;border-radius:20px;font-size:11px;color:#e5c36e;margin:2px}footer{text-align:center;color:#8492aa;padding:18px;font-size:11px}@media(min-width:620px){.hero-grid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+</style></head><body><header><h1>⚔ MLBB COUNTER LAB</h1><p>Tüm kahramanlar • Rol filtresi • Counter ve build kaynakları</p></header><main>
+<section class="panel"><h2>1. Kahraman kataloğu</h2><input id="search" placeholder="Kahraman ara..." autocomplete="off"><div class="filters"><select id="role"><option value="">Tüm roller</option><option>Fighter</option><option>Mage</option><option>Marksman</option><option>Assassin</option><option>Tank</option><option>Support</option></select><select id="sort"><option value="az">A-Z sırala</option><option value="za">Z-A sırala</option></select></div><p class="count" id="count"></p><div id="heroes" class="hero-grid"></div></section>
+<section class="panel"><h2>2. Counter ve build araştırması</h2><div id="chosen"><p class="note">Listeden bir kahramana dokun. Seçtiğin kahraman için güncel eşleşme ve build kaynaklarına gidebilirsin.</p></div><div class="actions"><a class="link" href="https://mlbbhub.com/tr/matchups" target="_blank" rel="noopener">⚔ Counter / Matchup tablosu</a><a class="link" href="https://mlbbhub.com/tr/heroes" target="_blank" rel="noopener">📚 Kahraman ve build kataloğu</a><a class="link" href="https://www.mobilelegends.com/" target="_blank" rel="noopener">🌐 Resmî MLBB sitesi</a></div></section>
+<section class="panel"><h2>3. Hızlı karşı eşya rehberi</h2><div><span class="pill">Dominance Ice · Can yenileme/kalkan azaltma</span><span class="pill">Sea Halberd · Fiziksel anti-heal</span><span class="pill">Glowing Wand · Büyü anti-heal</span><span class="pill">Athena's Shield · Ani büyü hasarı</span><span class="pill">Radiant Armor · Sürekli büyü hasarı</span><span class="pill">Antique Cuirass · Fiziksel yetenek hasarı</span></div></section>
+<p class="note">Veri notu: Kahraman kataloğu MLBBHub'ın 5 Kasım 2026 tarihli 133 kahraman listesine göre hazırlanmıştır. MLBBHub topluluk kaynaklıdır, MOONTON'un resmî servisi değildir. Kahraman listesi eksiksizdir; her kahraman için bağımsız doğrulanmış counter/build istatistiği bu sürümde henüz uygulamaya gömülü değildir. Güncel eşleşmeler için yukarıdaki matchup kaynağını kullan.</p>
+</main><footer>MLBB COUNTER LAB • Roster 133/133 • 05.11.2026</footer>
 <script>
-const data=[
-["Aamon","Assassin","🗡",["Saber","Eudora","Khufra"],["Tough Boots","Athena's Shield","Radiant Armor","Immortality","Winter Crown","Malefic Roar"]],
-["Alucard","Fighter","⚔",["Kaja","Franco","Baxia"],["Dominance Ice","Antique Cuirass","Blade Armor","Immortality","Malefic Roar","Tough Boots"]],
-["Angela","Support","💗",["Diggie","Nana","Atlas"],["Dominance Ice","Sea Halberd","Glowing Wand","Immortality","Flask of the Oasis","Magic Shoes"]],
-["Argus","Fighter","⚔",["Kaja","Franco","Baxia"],["Dominance Ice","Antique Cuirass","Blade Armor","Immortality","Malefic Roar","Warrior Boots"]],
-["Atlas","Tank","🛡",["Diggie","Valir","Akai"],["Athena's Shield","Radiant Armor","Dominance Ice","Immortality","Antique Cuirass","Tough Boots"]],
-["Balmond","Fighter","🪓",["Karrie","Valir","Kaja"],["Dominance Ice","Sea Halberd","Antique Cuirass","Immortality","Malefic Roar","Warrior Boots"]],
-["Baxia","Tank","🛡",["Karrie","Lunox","Valir"],["Demon Hunter Sword","Genius Wand","Divine Glaive","Holy Crystal","Immortality","Tough Boots"]],
-["Beatrix","Marksman","🏹",["Lolita","Natalia","Saber"],["Blade Armor","Wind of Nature","Antique Cuirass","Immortality","Malefic Roar","Warrior Boots"]],
-["Benedetta","Assassin","🗡",["Khufra","Minsitthar","Phoveus"],["Antique Cuirass","Dominance Ice","Blade Armor","Immortality","Malefic Roar","Warrior Boots"]],
-["Chou","Fighter","🥋",["Khufra","Ruby","Valir"],["Antique Cuirass","Dominance Ice","Immortality","Malefic Roar","Blade Armor","Warrior Boots"]],
-["Dyrroth","Fighter","⚔",["Thamuz","Freya","Valir"],["Dominance Ice","Antique Cuirass","Blade Armor","Immortality","Sea Halberd","Warrior Boots"]],
-["Fanny","Assassin","🗡",["Khufra","Franco","Saber"],["Antique Cuirass","Dominance Ice","Blade Armor","Immortality","Winter Crown","Warrior Boots"]],
-["Franco","Tank","🪝",["Diggie","Valir","Akai"],["Athena's Shield","Radiant Armor","Dominance Ice","Immortality","Antique Cuirass","Tough Boots"]],
-["Gusion","Assassin","🗡",["Kaja","Saber","Chou"],["Athena's Shield","Radiant Armor","Winter Crown","Immortality","Divine Glaive","Arcane Boots"]],
-["Hanabi","Marksman","🏹",["Lolita","Natalia","Saber"],["Blade Armor","Wind of Nature","Dominance Ice","Immortality","Malefic Roar","Swift Boots"]],
-["Hayabusa","Assassin","🥷",["Khufra","Saber","Minsitthar"],["Antique Cuirass","Dominance Ice","Blade Armor","Immortality","Malefic Roar","Warrior Boots"]],
-["Johnson","Tank","🚘",["Diggie","Valir","Akai"],["Athena's Shield","Radiant Armor","Dominance Ice","Immortality","Antique Cuirass","Tough Boots"]],
-["Karrie","Marksman","🏹",["Lolita","Saber","Natalia"],["Blade Armor","Wind of Nature","Antique Cuirass","Immortality","Malefic Roar","Swift Boots"]],
-["Layla","Marksman","🏹",["Natalia","Saber","Lolita"],["Blade Armor","Wind of Nature","Dominance Ice","Immortality","Malefic Roar","Swift Boots"]],
-["Lancelot","Assassin","🗡",["Khufra","Saber","Minsitthar"],["Antique Cuirass","Dominance Ice","Blade Armor","Immortality","Malefic Roar","Warrior Boots"]],
-["Miya","Marksman","🏹",["Saber","Natalia","Lolita"],["Blade Armor","Wind of Nature","Dominance Ice","Immortality","Malefic Roar","Swift Boots"]],
-["Nana","Mage","✨",["Lolita","Chou","Kadita"],["Athena's Shield","Radiant Armor","Winter Crown","Immortality","Divine Glaive","Tough Boots"]],
-["Pharsa","Mage","🔮",["Lolita","Hayabusa","Natalia"],["Athena's Shield","Radiant Armor","Winter Crown","Immortality","Divine Glaive","Arcane Boots"]],
-["Tigreal","Tank","🛡",["Diggie","Valir","Akai"],["Athena's Shield","Radiant Armor","Dominance Ice","Immortality","Antique Cuirass","Tough Boots"]],
-["Yin","Fighter","👊",["Valir","Thamuz","Khufra"],["Dominance Ice","Antique Cuirass","Blade Armor","Immortality","Malefic Roar","Warrior Boots"]]
-];
-let selected=null;
+const heroes = [{"name": "Aamon", "role": "Assassin"}, {"name": "Akai", "role": "Tank"}, {"name": "Aldous", "role": "Fighter"}, {"name": "Alice", "role": "Tank / Mage"}, {"name": "Alpha", "role": "Fighter"}, {"name": "Alucard", "role": "Fighter / Assassin"}, {"name": "Angela", "role": "Support"}, {"name": "Argus", "role": "Fighter"}, {"name": "Arlott", "role": "Fighter / Assassin"}, {"name": "Atlas", "role": "Tank"}, {"name": "Aulus", "role": "Fighter"}, {"name": "Aurora", "role": "Mage"}, {"name": "Badang", "role": "Fighter"}, {"name": "Balmond", "role": "Fighter"}, {"name": "Bane", "role": "Fighter / Mage"}, {"name": "Barats", "role": "Tank / Fighter"}, {"name": "Baxia", "role": "Tank"}, {"name": "Beatrix", "role": "Marksman"}, {"name": "Belerick", "role": "Tank"}, {"name": "Benedetta", "role": "Assassin / Fighter"}, {"name": "Brody", "role": "Marksman"}, {"name": "Bruno", "role": "Marksman"}, {"name": "Carmilla", "role": "Support / Tank"}, {"name": "Cecilion", "role": "Mage"}, {"name": "Chang'e", "role": "Mage"}, {"name": "Chip", "role": "Support / Tank"}, {"name": "Chou", "role": "Fighter"}, {"name": "Cici", "role": "Fighter"}, {"name": "Claude", "role": "Marksman"}, {"name": "Clint", "role": "Marksman"}, {"name": "Cyclops", "role": "Mage"}, {"name": "Diggie", "role": "Support"}, {"name": "Dyrroth", "role": "Fighter"}, {"name": "Edith", "role": "Tank / Marksman"}, {"name": "Esmeralda", "role": "Tank / Mage"}, {"name": "Estes", "role": "Support"}, {"name": "Eudora", "role": "Mage"}, {"name": "Fanny", "role": "Assassin"}, {"name": "Faramis", "role": "Support / Mage"}, {"name": "Floryn", "role": "Support"}, {"name": "Franco", "role": "Tank"}, {"name": "Fredrinn", "role": "Fighter / Tank"}, {"name": "Freya", "role": "Fighter"}, {"name": "Gatotkaca", "role": "Tank / Fighter"}, {"name": "Gloo", "role": "Tank"}, {"name": "Gord", "role": "Mage"}, {"name": "Granger", "role": "Marksman"}, {"name": "Grock", "role": "Tank / Fighter"}, {"name": "Guinevere", "role": "Fighter"}, {"name": "Gusion", "role": "Assassin"}, {"name": "Hanabi", "role": "Marksman"}, {"name": "Hanzo", "role": "Assassin"}, {"name": "Harith", "role": "Mage"}, {"name": "Harley", "role": "Assassin / Mage"}, {"name": "Hayabusa", "role": "Assassin"}, {"name": "Helcurt", "role": "Assassin"}, {"name": "Hilda", "role": "Fighter / Tank"}, {"name": "Hirara", "role": "Assassin"}, {"name": "Hylos", "role": "Tank"}, {"name": "Irithel", "role": "Marksman"}, {"name": "Ixia", "role": "Marksman"}, {"name": "Jawhead", "role": "Fighter"}, {"name": "Johnson", "role": "Tank / Support"}, {"name": "Joy", "role": "Assassin"}, {"name": "Julian", "role": "Assassin / Fighter"}, {"name": "Kadita", "role": "Mage / Assassin"}, {"name": "Kagura", "role": "Mage"}, {"name": "Kaja", "role": "Support"}, {"name": "Kalea", "role": "Support / Fighter"}, {"name": "Karina", "role": "Assassin"}, {"name": "Karrie", "role": "Marksman"}, {"name": "Khaleed", "role": "Fighter"}, {"name": "Khufra", "role": "Tank"}, {"name": "Kimmy", "role": "Marksman / Mage"}, {"name": "Lancelot", "role": "Assassin"}, {"name": "Lapu-Lapu", "role": "Fighter"}, {"name": "Layla", "role": "Marksman"}, {"name": "Leomord", "role": "Fighter"}, {"name": "Lesley", "role": "Marksman / Assassin"}, {"name": "Ling", "role": "Assassin"}, {"name": "Lolita", "role": "Support / Tank"}, {"name": "Lukas", "role": "Fighter"}, {"name": "Lunox", "role": "Mage"}, {"name": "Luo Yi", "role": "Mage"}, {"name": "Lylia", "role": "Mage"}, {"name": "Marcel", "role": "Support"}, {"name": "Martis", "role": "Fighter"}, {"name": "Masha", "role": "Fighter / Tank"}, {"name": "Mathilda", "role": "Support / Assassin"}, {"name": "Melissa", "role": "Marksman"}, {"name": "Minotaur", "role": "Tank / Support"}, {"name": "Minsitthar", "role": "Fighter"}, {"name": "Miya", "role": "Marksman"}, {"name": "Moskov", "role": "Marksman"}, {"name": "Nana", "role": "Mage"}, {"name": "Natalia", "role": "Assassin"}, {"name": "Natan", "role": "Marksman"}, {"name": "Nolan", "role": "Assassin"}, {"name": "Novaria", "role": "Mage"}, {"name": "Obsidia", "role": "Marksman"}, {"name": "Odette", "role": "Mage"}, {"name": "Paquito", "role": "Fighter / Assassin"}, {"name": "Pharsa", "role": "Mage"}, {"name": "Phoveus", "role": "Fighter"}, {"name": "Popol and Kupa", "role": "Marksman"}, {"name": "Rafaela", "role": "Support"}, {"name": "Roger", "role": "Fighter / Marksman"}, {"name": "Ruby", "role": "Fighter"}, {"name": "Saber", "role": "Assassin"}, {"name": "Selena", "role": "Assassin / Mage"}, {"name": "Silvanna", "role": "Fighter"}, {"name": "Sora", "role": "Fighter / Assassin"}, {"name": "Sun", "role": "Fighter"}, {"name": "Suyou", "role": "Assassin / Fighter"}, {"name": "Terizla", "role": "Fighter / Tank"}, {"name": "Thamuz", "role": "Fighter"}, {"name": "Tigreal", "role": "Tank"}, {"name": "Uranus", "role": "Tank"}, {"name": "Vale", "role": "Mage"}, {"name": "Valentina", "role": "Mage"}, {"name": "Valir", "role": "Mage"}, {"name": "Vexana", "role": "Mage"}, {"name": "Wanwan", "role": "Marksman"}, {"name": "X.Borg", "role": "Fighter"}, {"name": "Xavier", "role": "Mage"}, {"name": "Yi Sun-shin", "role": "Assassin / Marksman"}, {"name": "Yin", "role": "Fighter / Assassin"}, {"name": "Yu Zhong", "role": "Fighter"}, {"name": "Yve", "role": "Mage"}, {"name": "Zetian", "role": "Mage"}, {"name": "Zhask", "role": "Mage"}, {"name": "Zhuxin", "role": "Mage"}, {"name": "Zilong", "role": "Fighter / Assassin"}];
+const search=document.getElementById("search"), role=document.getElementById("role"), sort=document.getElementById("sort");
+function initials(name){return name.split(/\s+/).map(x=>x[0]).slice(0,2).join("").toUpperCase()}
 function render(){
-const q=document.getElementById('search').value.toLowerCase();
-document.getElementById('heroes').innerHTML=data.filter(x=>x[0].toLowerCase().includes(q)).map(x=>
-`<div class="hero ${selected===x[0]?'selected':''}" onclick="choose('${x[0]}')"><div class="avatar">${x[2]}</div><b>${x[0]}</b><small>${x[1]}</small></div>`).join('');
+ let list=heroes.filter(h=>h.name.toLowerCase().includes(search.value.trim().toLowerCase())&&(!role.value||h.role.split(" / ").includes(role.value)));
+ list.sort((a,b)=>sort.value==="az"?a.name.localeCompare(b.name):b.name.localeCompare(a.name));
+ document.getElementById("count").textContent=list.length+" / "+heroes.length+" kahraman";
+ document.getElementById("heroes").innerHTML=list.map(h=>'<button class="hero" type="button" data-name="'+h.name+'"><span class="avatar">'+initials(h.name)+'</span><b>'+h.name+'</b><small>'+h.role+'</small></button>').join("")||'<p class="note">Eşleşen kahraman bulunamadı.</p>';
 }
-function choose(name){
-selected=name;
-const x=data.find(a=>a[0]===name);
-document.getElementById('results').innerHTML='<div class="result">'+x[3].map((c,i)=>`<div class="counter"><small>Öneri ${i+1}</small><strong>${c}</strong><small>Karşı seçim olarak değerlendir</small></div>`).join('')+'</div>';
-document.getElementById('build').innerHTML='<div class="tags">'+x[5].map((b,i)=>`<div class="tag">${i+1}. ${b}</div>`).join('')+'</div>';
-render();
-}
-render();
-</script>
-</body>
-</html>
+document.getElementById("heroes").addEventListener("click",e=>{
+ const button=e.target.closest("button[data-name]"); if(!button)return;
+ const h=heroes.find(x=>x.name===button.dataset.name);
+ document.getElementById("chosen").innerHTML='<h3 style="margin:0 0 8px;color:#f6c75b">'+h.name+'</h3><p class="note">Rol: '+h.role+'. Bu kahramanın matchup verileri ve build önerileri için güncel kaynakları açabilirsin. Öneriler yama, koridor ve takım kompozisyonuna göre değişir.</p><div class="actions"><a class="link" target="_blank" rel="noopener" href="https://mlbbhub.com/tr/matchups">Counter / matchup verilerini incele</a><a class="link" target="_blank" rel="noopener" href="https://mlbbhub.com/tr/heroes">Build ve kahraman detayları</a></div>';
+});
+search.addEventListener("input",render); role.addEventListener("change",render); sort.addEventListener("change",render); render();
+</script></body></html>
